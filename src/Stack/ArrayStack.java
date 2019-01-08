@@ -18,30 +18,54 @@ public class ArrayStack<E> implements Stack<E> {
         array = new Array<E>();
     }
 
+    /**
+     * 返回栈的大小
+     * @return
+     */
     @Override
     public int getSize() {
         return array.getSize();
     }
 
+    /**
+     * 返回栈的容量
+     * @return
+     */
     public int getCapacity() {
         return array.getCapacity();
     }
 
+    /**
+     * 返回栈是否为空
+     * @return
+     */
     @Override
     public boolean isEmpty() {
         return getSize() == 0;
     }
 
+    /**
+     * 栈添加元素
+     * @param e
+     */
     @Override
     public void push(E e) {
         array.addLast(e);
     }
 
+    /**
+     * 栈弹出元素，并将其返回
+     * @return
+     */
     @Override
     public E pop() {
         return array.removeLast();
     }
 
+    /**
+     * 获取栈顶元素
+     * @return
+     */
     @Override
     public E peek() {
         return array.get(getSize() - 1);

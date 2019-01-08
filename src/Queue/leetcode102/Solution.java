@@ -213,6 +213,7 @@ class Solution {
     }
 
 
+    // 二叉树的层序遍历，这里没有使用递归方式
     public List<List<Integer>> levelOrder(TreeNode root) {
         ArrayList<List<Integer>> res = new ArrayList<>();
         if (root == null) {

@@ -1,10 +1,14 @@
 package Queue;
 
+/**
+ * 用循环队列实现队列
+ * 循环队列的 head 和 tail 的位置+1或-1时，都需要进行 %data.length（取余）操作
+ */
 public class LoopQueue<E> implements Queue<E> {
 
-    private E[] data;
-    private int head, tail;
-    private int size;
+    private E[] data;   // 数组
+    private int head, tail; // 队列首位置、尾位置
+    private int size;   // 队列的大小
 
     public LoopQueue(int capacity) {
         data = (E[]) new Object[capacity];
@@ -17,26 +21,42 @@ public class LoopQueue<E> implements Queue<E> {
         this(10);
     }
 
+    /**
+     * 获取队列的大小
+     * @return
+     */
     @Override
     public int getSize() {
         return size;
     }
 
+    /**
+     * 返回队列是否为空
+     * @return
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * 获取队列的容量
+     * @return
+     */
     public int getCapacity() {
         return data.length - 1;
     }
 
+    /**
+     * 队列中加入一个元素
+     * @param e
+     */
     @Override
     public void enqueue(E e) {
+        // 如果容量已满，扩容
         if (size == getCapacity()) {
             resize(2 * getCapacity());
         }
-
 
         data[tail] = e;
         tail = (tail + 1) % data.length;
@@ -54,6 +74,10 @@ public class LoopQueue<E> implements Queue<E> {
         tail = size;
     }
 
+    /**
+     * 队列出队一个元素，并将其返回
+     * @return
+     */
     @Override
     public E dequeue() {
         if (isEmpty()) {
@@ -61,16 +85,21 @@ public class LoopQueue<E> implements Queue<E> {
         }
 
         E ret = data[head];
-        data[head] = null;
+        data[head] = null; // 游离元素
         head = (head + 1) % data.length;
         size--;
 
+        // 缩小容量
         if (size == getCapacity() / 4 && getCapacity() / 2 != 0) {
             resize(getCapacity() / 2);
         }
         return ret;
     }
 
+    /**
+     * 返回队列队首的元素
+     * @return
+     */
     @Override
     public E getFront() {
         if (isEmpty()) {
@@ -94,7 +123,7 @@ public class LoopQueue<E> implements Queue<E> {
     }
 
     public static void main(String[] args) {
-        LoopQueue<Integer> queue = new LoopQueue<>();
+        LoopQueue<Integer> queue = new LoopQueue<Integer>();
         for(int i = 0 ; i < 10 ; i ++){
             queue.enqueue(i);
             System.out.println(queue);
