@@ -13,6 +13,14 @@ public class Array<E> {
         this(10);
     }
 
+    public Array(E[] arr) {
+        data = (E[]) new Object[arr.length];
+        for (int i = 0; i < arr.length; i ++) {
+            data[i] = arr[i];
+        }
+        size = arr.length;
+    }
+
     /**
      * 返回数组的大小
      * @return
@@ -163,6 +171,17 @@ public class Array<E> {
             }
         }
         return -1;
+    }
+
+    /**
+     * 交换数组中两个位置的元素
+     * @param i
+     * @param j
+     */
+    public void swap(int i, int j) {
+        E tmp = data[i];
+        data[i] = data[j];
+        data[j] = tmp;
     }
 
     @Override

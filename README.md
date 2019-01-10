@@ -439,3 +439,151 @@ private Node add(Node node, E e) {
 }
 ```
 
+## 集合和映射 
+
+`SetAndMap.Set`
+
+- 不能添加重复元素
+- 典型应用
+    - 客户统计
+    - 词汇量统计
+
+
+返回值 | 方法名
+-- | --
+void | add(E)
+void | remove()
+boolean | contains(E)
+int | getSize()
+boolean | isEmpty()
+
+
+
+### 基于二分搜索树实现集合 BSTSet
+
+`SetAndMap.BSTSet`
+
+### 基于链表实现集合 LinkedListSet
+`SetAndMap.LinkedListSet`
+
+### 两种集合实现的复杂度分析
+
+- ==时间复杂度==
+
+ 方法 | LinkedListSet | BSTSet | BSTSet最差
+---| --- |-- | --
+增 add | O(n) | O(logn) | O(n)
+删 remove | O(n) |O(logn) | O(n)
+查 contains | O(n) | O(logn) | O(n)
+
+    最差情况是，BST退化成链表，比如说按照，1,2,3,4,5……的顺序插入，形成二分搜索树
+    
+
+### 基于二分搜索树实现映射 BSTMap
+
+`SetAndMap.BSTMap`
+
+### 基于链表实现映射 LinkedListMap
+
+`SetAndMap.LinkedListMap`
+
+### 两种映射实现的复杂度分析
+
+- ==时间复杂度==
+
+ 方法 | LinkedListMap | BSTMap | BSTSet最差
+---| --- |-- | --
+增 add | O(n) | O(logn) | O(n)
+删 remove | O(n) |O(logn) | O(n)
+改 set | O(n) |O(logn) | O(n)
+查 get | O(n) | O(logn) | O(n)
+查 contains | O(n) | O(logn) | O(n)
+
+
+- `BSTMap`是**有序映射**
+- `LinkedListMap`是**无序映射**（基于哈希表的实现，也是无序映射）
+
+## 优先队列和堆
+
+`Queue.PriorityQueue`
+
+- 动态
+- 可以使用不同的底层实现
+
+
+- ==时间复杂度==
+
+
+数据结构  | 入队 | 出队（拿出最大元素）
+---| --- |--
+普通线性结构 | O(1) | O(n)
+顺序线性结构 | O(n) | O(1)
+堆 | O(logn) | O(logn) 
+
+
+
+### 堆的基本结构
+
+- 是一棵树
+- 堆中某个节点的值总是不大于其父节点的值（最大堆）或不小于其父节点的值（最小堆）
+
+
+#### 二叉堆
+
+- 是堆
+- 是完全二叉树（把元素顺序排列成树的形状）
+- 约定——这里都用最大堆
+- 可以用数组实现二叉堆（父节点，孩子节点的索引很好计算）
+
+`PriorityQueueAndHeap.MaxHeap`
+
+
+返回值 | 方法名 | 备注
+-- | -- | --
+int | getSize()
+boolean | isEmpty()
+int | parent(int) | private 返回父节点的索引
+int | leftChild(int) | private 返回左孩子的索引
+int | rightChild(int) | private 返回右孩子的索引
+void | add(E) 
+E | extractMax() | 向堆中取出元素（最大值）
+void | heapify() | 将任意数组整理成堆的形状
+void | replace(E e) | 取出最大元素，放入一个新的元素
+
+
+- 假设需要将具有n个元素的数组的元素插入一个空堆，有两种方式
+    - 依次将n个元素插入空堆
+    - 对数组进行heapify()
+
+    
+**时间复杂度对比：**
+
+将n个元素依次插入空堆  | heapify()
+---| --- 
+O(nlogn) | O(n) 
+
+- **因此在用数组传入构造函数构造堆的时候，就可以利用heapify()来初始化**
+
+
+
+### 基于堆的优先队列
+
+
+
+---------------
+
+Trie 
+	add()
+	contains(String word)
+	words
+	
+Trie和前缀搜索
+
+	isPrefix(String prefix)
+	
+Leetcode 208 实现Trie（前缀树）
+
+Leetcode 211 添加与搜索单词——数据结构设计
+	
+
+	
