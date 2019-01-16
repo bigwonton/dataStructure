@@ -923,6 +923,8 @@ boolean | isBalanced() | 该二叉树是否是一棵平衡二叉树
     - 右旋 rightRotate
     - 颜色翻转 flipColor
 
+#### Todo 红黑树删除节点
+
 #### 红黑树的性能
 
 - 对于完全随机的数据，普通的二分搜索树很好用
